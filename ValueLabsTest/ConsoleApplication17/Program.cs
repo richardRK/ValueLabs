@@ -67,24 +67,29 @@ namespace ConsoleApplication17
         private static void Solve(string[] uniqueMtchArry)
         {
             List<char> firstCharLst = new List<char>();
+            
+            //var defaultIfEmptyMtchAry = uniqueMtchArry.DefaultIfEmpty();
 
             foreach (var entity in uniqueMtchArry)
             {
                 string original = entity.ToLower();
                 int comma = original.IndexOf(',');
 
+                //pull out Forename and Surname
                 string Surname = original.Substring(0, comma);
-
                 string Forename = original.Substring(original.LastIndexOf(',') + 1).Trim(' ');
 
+                //pickup first char of Forename
                 var firstChar = Forename.First();
 
 
+                //check to avoid redundancy
                 if (!firstCharLst.Contains(firstChar))
                 {
                     //logic to count occurances
                     var count = findOccurances(uniqueMtchArry, firstChar);
 
+                    //print the result
                     var upperfirstChar = Char.ToUpper(firstChar);
                     Console.WriteLine(upperfirstChar + " appears " + count + " times");
                 }
