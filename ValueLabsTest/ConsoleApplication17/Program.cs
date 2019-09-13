@@ -26,8 +26,8 @@ namespace ConsoleApplication17
             string[] combined = lst1.Concat(lst2).ToArray();
 
 
-
-            string pattern = @"([a-zA-Z]+), ([a-zA-Z]+$)";
+            //match the pattern in the format of "Surname, Forename" 
+            string pattern = @"^([a-zA-Z]+), ([a-zA-Z]+$)";
 
 
             List<string> match = new List<string>();
@@ -46,7 +46,6 @@ namespace ConsoleApplication17
                 else
                 {
                     mismatch.Add(str1);
-
                 }
             }
 
@@ -55,7 +54,7 @@ namespace ConsoleApplication17
             var uniqueMatch = match.Distinct().ToList();
             var uniqueMisMatch = mismatch.Distinct().ToList();
 
-
+            
             var uniqueMtchArry = uniqueMatch.ToArray();
 
             //Create a method(s) to count how many times the first character of the forename appears in both lists.
@@ -85,7 +84,9 @@ namespace ConsoleApplication17
                 {
                     //logic to count occurances
                     var count = findOccurances(uniqueMtchArry, firstChar);
-                    Console.WriteLine(firstChar + " appears " + count + " times");
+
+                    var upperfirstChar = Char.ToUpper(firstChar);
+                    Console.WriteLine(upperfirstChar + " appears " + count + " times");
                 }
 
                 firstCharLst.Add(firstChar);
